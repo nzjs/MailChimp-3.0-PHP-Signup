@@ -1,0 +1,71 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Foo.lc</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+	</head>
+	<body>
+
+		<!-- Header -->
+			<header id="header">
+				<h1>Foo</h1>
+				<p>A freelance developer's ramblings and code snippets<br />
+				for your personal amusement and inspiration. </p>
+			</header>
+
+		<!-- Signup Form -->
+		<script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+
+			<form id="signup" action="index.html" method="get">
+			    <input type="hidden" name="ajax" value="true" />
+			    <input type="email" name="email" id="email" placeholder="Email address" required/>
+			    <input type="submit" id="SendButton" name="submit" value="Sign Up" /> <span id="message"></span>
+			</form>
+
+			<script>
+			$(document).ready(function() {
+			    $('#signup').submit(function() {
+			        $("#message").html("Adding your email address...");
+			        $.ajax({
+			            url: '/assets/php/subscribe.php',
+			            type: "POST",
+			            data: $('#signup').serialize(),
+			            success: function(msg) 
+			            {
+			                $('#message').html("<i class='fa fa-check'></i> Thanks for signing up!");
+			            },
+			            error: function(msg) 
+			            {
+			                $('#message').html("<span style='color: red;'><i class='fa fa-times'></i> Error. Please try again later.</span>");
+			                console.log(arguments);
+			            }
+			        });
+			        return false;
+			    });
+			});
+			</script>
+
+		<!-- Footer -->
+			<footer id="footer">
+				<ul class="icons">
+					<li><a href="/" class="icon fa-home"><span class="label">Foo.lc</span></a></li>
+					<li><a href="//github.com/nzjs" class="icon fa-github" target="_blank"><span class="label">Github</span></a></li>
+					<li><a href="//twitter.com/lc_foo" class="icon fa-twitter" target="_blank"><span class="label">Twitter</span></a></li>
+					<li><a href="mailto:js@foo.lc" class="icon fa-envelope-o" target="_blank"><span class="label">Email</span></a></li>
+				</ul>
+				<ul class="copyright">
+					<li>&copy; Foo.lc</li><li><a href="//html5up.net">Design</a></li>
+				</ul>
+			</footer>
+
+		<!-- Scripts -->
+			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
